@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>试玩赚钱</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            height: 61px;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(204, 204, 204, 0.5);
+        }
+
+        .wrapper {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            height: 40px;
+            background: #fff;
+        }
+
+        ul {
+            background: rgba(204, 204, 204, 0.1);
+        }
+
+        li .icon {
+            width: 50px;
+            height: 50px;
+            margin: 6px 5px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        li .icon img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+        }
+
+        li .article {
+            flex: 1;
+        }
+
+        li .btn {
+            display: block;
+            width: 50px;
+            margin: 8px;
+            background: #46be8a;
+            color: #fff;
+            text-align: center;
+            height: 28px;
+            font-size: 14px;
+            line-height: 28px;
+            border-radius: 10px;
+            letter-spacing: 2px;
+            box-shadow: 0 0 2px #46be8a;
+        }
+
+        li h2 {
+            font-size: 12px;
+            overflow: hidden;
+            margin-bottom: 2px;
+            font-weight: bold;
+            color: #5a5a5a;
+        }
+
+        li p {
+            color: #999;
+            font-size: 12px;
+            max-height: 32px;
+            overflow: hidden;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class=wrapper>
+    <div class="header">
+        <img height="40px" src="./img/header.jpg">
+    </div>
+    <div class=content>
+        <ul>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" src="//libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+    var apiUrl='http://x642861958.web30.98ta.cn';
+	$.ajax({
+		url:apiUrl+'/vender/get_info.php?'+new Date().getTime(),
+		success:function(e){
+			var arr=JSON.parse(e);
+			var str='';
+			arr=arr.data;
+			for(i in arr){
+				str += '<li><div class="icon"><img width="50px" src="' + arr[i]["icon"] + '"></div>\n' +
+					'                    <div class="article">\n' +
+					'                        <h2>' + arr[i]["title"] + '</h2>\n' +
+					'                        <p>\n' +
+					'                            ' + arr[i]["tip"] + '\n' +
+					'                        </p>\n' +
+					'                    </div>\n' +
+					'                    <a class="btn" href="javascript:;" ontouchstart=' + 'window.location.href="' + arr[i]["href"] + '"' + '>\n' +
+					'                        进入\n' +
+					'                    </a></li>'
+			}
+			$('.content ul').html(str);
+		}
+	});
+</script>
+</body>
+</html>
